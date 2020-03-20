@@ -1,6 +1,8 @@
 [submodule "qemu"]
 	path = qemu
 	url = https://github.com/parsa-epfl/qemu.git
+	branch = knockoutkraken
 [submodule "images"]
 	path = images
 	url = https://github.com/parsa-epfl/images.git
+	branch = matmul-knockoutkraken
