@@ -6,3 +6,6 @@
 	path = images
 	url = https://github.com/parsa-epfl/images.git
 	branch = matmul-knockoutkraken
+[submodule "KnockoutKraken"]
+	path = KnockoutKraken
+	url = https://github.com/parsa-epfl/KnockoutKraken.git
