@@ -1,31 +1,11 @@
-# QFlex #
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.504368.svg)](https://doi.org/10.5281/zenodo.504368)
+# KnockoutKraken
 
-QFlex is a full-system cycle-accurate computer architecture simulator of multi-node computer systems. QFlex is a multi-layer software stack composed of QEMU, Flexus, and NS-3. QEMU is a widely-used machine emulator, which allows to boot any machine and execute unmodified applications and operating systems. Flexus is a cycle-accurate modeling tool of complete servers, which enables modeling modern CPUs, with various core types, network-on-chip topologies, and cache organizations; and various DRAM-based memory systems. NS-3 is a popular network simulator that allows to glue all the simulated server nodes together with different network integration characteristics. 
+This is the repository with all the code you need to run KnockoutKraken. KnockoutKraken brings FPGA-accelerated simulation to the QFlex family. We are working towards simulating instrumented code on instrumented hardware at 100 MIPS/core!
 
-More information is available in the QFlex [website][qfw].
+KnockoutKraken is composed of three main components: a modified version of QEMU, an instrumented ARM softcore (ARMFlex), and a driver that handles the communication between QEMU and ARMFlex. The vast majority of developers will work on QEMU and/or ARMFlex. QEMU is written in C and can be developed in most Linux machines. ARMFlex is written in Chisel, and while basic testing can be done in most Linux machines, fully simulating and synthesizing the softcore requires an extensive toolchain.
 
-[![QFlex](http://qflex.epfl.ch/wp-content/uploads/2018/09/QFlex.png)](http://qflex.epfl.ch/)
+- Go to the `qemu` directory and build QEMU with support for FPGA acceleration ([README](https://github.com/parsa-epfl/qemu/blob/knockoutkraken/README.md)).
 
-# Licensing #
+- Go to the `image` directory and run `unpack.sh` to unpack the image. You can use your newly built QEMU to try it out ([README](https://github.com/parsa-epfl/images/blob/matmul-knockoutkraken/README.md)).
 
-QFlex's software components are all available as open-source software. All of the software components are governed by 
-their own licensing terms. Researchers interested in using QFlex are required to fully understand and abide by the 
-licensing terms of the various components. For more information, please refer to the [license page][qfl].
-
-# Running QFlex #
-
-Instructions on how to run QFlex are available [here][qfd]. Along with QFlex, we provide an image of one of the CloudSuite benchmarks, [Data Caching][csdc], running on Debian 8 for 64-bit ARM. This way, QFlex users can easily perform a microarchitectural study of the aforesaid benchmark.
-
-QFlex is still a work in progress, and at this stage, we provide limited functionality. Currently, QFlex is able perform full-system trace-based simulation of a single server node. Hence, no timing models are available yet.
-
-# Support #
-
-We encourage QFlex users to use GitHub issues for requests for enhacements, questions or bug fixes.
-
-[qfw]: http://qflex.epfl.ch/
-[qfl]: http://qflex.epfl.ch/license/
-[qfd]: http://qflex.epfl.ch/#download
-[csdc]: https://github.com/parsa-epfl/cloudsuite/blob/master/docs/benchmarks/data-caching.md
-
-
+- Go to the `knockoutkraken` directory and start simulating the FPGA soft core right away with `sbt`. Afterwards, you can synthesize and run your image in an Amazon AWS F1 node. ([README](https://github.com/parsa-epfl/KnockoutKraken/blob/master/README.md)).
